@@ -6,7 +6,7 @@ import { Flex,Image as Mantineimg,Text,Paper, Title, Center, ScrollArea } from '
 import {Client} from 'tmi.js'
 import {gsap } from 'gsap'
 import _ from 'lodash';
-import {cityData} from 'app/Landmarks.js';
+import {cityData} from 'app/Lankmarks.js';
 import Link from 'next/link';
 
 export default function Game(){
@@ -37,12 +37,10 @@ export default function Game(){
         chanceRef.current=chance
       }, [city]);
             client.on('message',(channel,tags,message,self)=>{
-                console.log(message)
-                if ((message.toLowerCase()===cityRef.current.name )  || (message.toUpperCase()===cityRef.current.name )){
-                    
+                if (message.toUpperCase().indexOf(cityRef.current.name.toUpperCase())!==-1){                    
                     handleUserInput(tags.username)
                     setWinner(tags.username)
-                    if (chanceRef.current===3) {
+                    if (chanceRef.current===5) {
                         gsap.to('.mainimage',{y:'200vh',duration:1})
                         gsap.to('.winnerline',{y:'65vh',duration:1})
                         gsap.to('.gamescreen',{y:'120vh',duration:1,delay:2})
@@ -61,20 +59,19 @@ export default function Game(){
                     }
                     }
             })
-        function handleUserInput(inputName) {
-            // Check if the user already exists
-            setPlayers(prevPlayers => {
-                let existingPlayer = prevPlayers.find(player => player.name === inputName);
-        
-                if (existingPlayer) {
-                    return prevPlayers.map(player =>
-                        player.name === inputName ? {...player, points: player.points + 1} : player
-                    );
-                } else {
-                    return [...prevPlayers, {name: inputName, points: 1}];
+            function handleUserInput(inputName) {
+                // Check if the user already exists
+                setPlayers(prevPlayers => {
+                    let existingPlayer = prevPlayers.find(player => player.name === inputName);
+            
+                    if (existingPlayer) {
+                        return prevPlayers.map(player =>player.name === inputName ? {...player, points: player.points + 1} : player
+                        );
+                    } else {
+                        return [...prevPlayers, {name: inputName, points: 1}];
+                    }
+                });
                 }
-            });
-            }
         
         
            
@@ -127,20 +124,25 @@ export default function Game(){
                 </Center>
             </Flex>
                 {city!== null &&<Flex className='game' h='100%' w='100%'    align='center' justify='space-evenly' >
-                    <Flex direction={'column'} className='scoreboard' align={'center'} style={{border:'1px solid #252525',position:'relative',bottom:'180vh',borderRadius:"20px"}} bg='black' h='85%' w='20%'>
+                    <Flex direction={'column'} className='scoreboard' align={'center'} style={{border:'1px solid #252525',position:'relative',bottom:'180vh',borderRadius:"20px"}} bg='black' h='85%' w='30%'>
                         <Flex h={'10%'} w={'80%'}  justify={'center'} align={'center'} style={{borderBottom:"1px solid white"}} >
                             <Title style={{color:"white"}}>Leaderboard</Title>
                         </Flex>
                         <ScrollArea  mt='lg' mb='lg'  h='90%' w='80%' style={{textAlign:"start",justifyContent:"space-around"}}  direction='column' align='self-start'    justify='space-evenly' >
-                            <Flex h='100%' w='100%'  direction='column' gap='2vh' >
+                            <Flex h='100%' w='100%'   direction='column'align={'center'}  >
                                 {players.sort((a, b) => b.points - a.points).map((player) => (
-                                    <Title key={player.name} style={{color:"#ededed"}} order={1}>
-                                        {player.name} {player.points}
-                                    </Title>))}                            
+                                    <Flex key={player.name} mt={'2%'} direction={'row'} justify={'space-between'} h={'100%'} w={'80%'} >
+                                        <Title  style={{color:"#ededed"}} order={1}>
+                                            {player.name}
+                                        </Title>
+                                        <Title style={{color:"#ededed"}} > {player.points}</Title>
+                                    </Flex>
+                                    
+                                    ))}                            
                             </Flex>
                         </ScrollArea>
                     </Flex>
-                <Flex  h='80%' w='60%' justify='center' align='center' direction='column'  >
+                <Flex  h='80%' w='50%' justify='center' align='center' direction='column'  >
                     <Paper  className='mainimage' style={{position:'relative',bottom:'180vh'}} >
                         <Mantineimg  alt='' radius='lg' src={city.image} ></Mantineimg>
                     </Paper>

@@ -37,11 +37,13 @@ export default function Game(){
         chanceRef.current=chance
       }, [city]);
             client.on('message',(channel,tags,message,self)=>{
-                if ((message.toLowerCase()===cityRef.current.name )  || (message.toUpperCase()===cityRef.current.name )){
+                console.log('message is', message)
+                console.log('city is',cityRef.current.name)
+                if (message.toUpperCase().indexOf(cityRef.current.name.toUpperCase())!==-1){
                     
                     handleUserInput(tags.username)
                     setWinner(tags.username)
-                    if (chanceRef.current===1) {
+                    if (chanceRef.current===5) {
                         gsap.to('.mainimage',{y:'200vh',duration:1})
                         gsap.to('.winnerline',{y:'65vh',duration:1})
                         gsap.to('.gamescreen',{y:'120vh',duration:1,delay:2})
