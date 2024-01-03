@@ -14,8 +14,7 @@ export default function Game(){
     const username=useParams()
     const [winner,setWinner]=useState()
     const [chance,setChance]=useState(1)
-    const [players,setPlayers]=useState([{name:'PixelProwler',points:'8'},{name:'MysticMingle',points:'5'},{name:'BlitzBumble',points:'3'},{name:'BlitzBumble',points:'2'},{name:'TechnoTempest',points:'1'}
-,{name:'MirageMarauder',points:'1'},{name:'AstroAegis',points:'1'},{name:'asfasf',points:'1'}])
+    const [players,setPlayers]=useState([])
     const [city,setCity]=useState(null)
     const client=new Client({
         channels:[username.id]
@@ -42,7 +41,7 @@ export default function Game(){
                     
                     handleUserInput(tags.username)
                     setWinner(tags.username)
-                    if (chanceRef.current===3) {
+                    if (chanceRef.current===1) {
                         gsap.to('.mainimage',{y:'200vh',duration:1})
                         gsap.to('.winnerline',{y:'65vh',duration:1})
                         gsap.to('.gamescreen',{y:'120vh',duration:1,delay:2})
@@ -61,20 +60,19 @@ export default function Game(){
                     }
                     }
             })
-        function handleUserInput(inputName) {
-            // Check if the user already exists
-            setPlayers(prevPlayers => {
-                let existingPlayer = prevPlayers.find(player => player.name === inputName);
-        
-                if (existingPlayer) {
-                    return prevPlayers.map(player =>
-                        player.name === inputName ? {...player, points: player.points + 1} : player
-                    );
-                } else {
-                    return [...prevPlayers, {name: inputName, points: 1}];
+            function handleUserInput(inputName) {
+                // Check if the user already exists
+                setPlayers(prevPlayers => {
+                    let existingPlayer = prevPlayers.find(player => player.name === inputName);
+            
+                    if (existingPlayer) {
+                        return prevPlayers.map(player =>player.name === inputName ? {...player, points: player.points + 1} : player
+                        );
+                    } else {
+                        return [...prevPlayers, {name: inputName, points: 1}];
+                    }
+                });
                 }
-            });
-            }
         
         
            
@@ -134,8 +132,8 @@ export default function Game(){
                         <ScrollArea  mt='lg' mb='lg'  h='90%' w='80%' style={{textAlign:"start",justifyContent:"space-around"}}  direction='column' align='self-start'    justify='space-evenly' >
                             <Flex h='100%' w='100%'   direction='column'align={'center'}  >
                                 {players.sort((a, b) => b.points - a.points).map((player) => (
-                                    <Flex mt={'2%'} direction={'row'} justify={'space-between'} h={'100%'} w={'80%'} >
-                                        <Title key={player.name} style={{color:"#ededed"}} order={1}>
+                                    <Flex key={player.name} mt={'2%'} direction={'row'} justify={'space-between'} h={'100%'} w={'80%'} >
+                                        <Title  style={{color:"#ededed"}} order={1}>
                                             {player.name}
                                         </Title>
                                         <Title style={{color:"#ededed"}} > {player.points}</Title>
