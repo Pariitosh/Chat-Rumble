@@ -6,7 +6,7 @@ import { Flex,Image as Mantineimg,Text,Paper, Title, Center, ScrollArea } from '
 import {Client} from 'tmi.js'
 import {gsap } from 'gsap'
 import _ from 'lodash';
-import {cityData} from 'app/Lankmarks.js';
+import {cityData} from 'app/Landmarks.js';
 import Link from 'next/link';
 
 export default function Game(){
