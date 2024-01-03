@@ -1,0 +1,17 @@
+.test:hover{
+    
+    transform: scale(1.1);
+    transition: 0.2s;
+}
+.test:hover{
+    transition:0.2s;
+}
+@font-face {
+    font-family: tangerine;
+    src: url('/public/Tangerine-Regular.ttf');
+}
+  
+.main {
+    font-family: tangerine;
+    
+}
