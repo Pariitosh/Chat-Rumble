@@ -5,7 +5,7 @@ import '@mantine/core/styles.css';
 import NextTopLoader from 'nextjs-toploader';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 const inter = Inter({ subsets: ['latin'] })
-
+import { Analytics } from '@vercel/analytics/react';
 export const metadata = {
   title: 'Chat Rumble',
   description: '',
@@ -30,6 +30,7 @@ export default function RootLayout({ children }) {
         />
           {children}
         </MantineProvider>
+        <Analytics/>
       </body>
     </html>
     </ClerkProvider>
