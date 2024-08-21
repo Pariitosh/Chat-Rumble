@@ -8,7 +8,7 @@ import {gsap } from 'gsap'
 import _ from 'lodash';
 import {cityData} from 'app/Cities.js';
 import Link from 'next/link';
-
+import '../../../public/hannah-busing-0V6DmTuJaIk-unsplash.jpg'
 export default function Game(){
     const router = useRouter();
     const username=useParams()
@@ -21,8 +21,9 @@ export default function Game(){
     })
     const [name,setName]=useState()
     useEffect(()=>{
-        const randomval=_.random(1,50).toString()
-        setCity((prev)=>cityData[randomval])
+        const randomval=_.random(1,19).toString()
+        setCity((prev)=>cityData[2])
+        // setName(cityData[randomval].name)
         setName(cityData[randomval].name)
         client.connect()
         return ()=>{
@@ -37,8 +38,6 @@ export default function Game(){
         chanceRef.current=chance
       }, [city]);
             client.on('message',(channel,tags,message,self)=>{
-                console.log('message is', message)
-                console.log('city is',cityRef.current.name)
                 if (message.toUpperCase().indexOf(cityRef.current.name.toUpperCase())!==-1){
                     
                     handleUserInput(tags.username)
@@ -79,10 +78,10 @@ export default function Game(){
         
            
     const hover = () => {
-        gsap.to('.btn',{scale:1.5 , border:'10px solid grey',duration:0.1})
+        gsap.to('.btn',{boxShadow:'0 0 20px rgba(255, 255, 0, 0.8), 0 0 40px rgba(255, 165, 0, 0.6), 0 0 60px rgba(255, 0, 255, 0.4)', duration:0.5})
     }
     const hovernt = () => {
-        gsap.to('.btn',{border:'0px',scale:1,duration:0.1})
+        gsap.to('.btn',{boxShadow: '0 0 10px rgba(0, 0, 0, 0.5)',duration:0.5})
     }   
     
     const start = () => {
@@ -119,7 +118,7 @@ export default function Game(){
                 </Flex>
                 
             </Flex>
-            { true && <Paper className='gamescreen' radius='20px' style={{border:'1px solid #252525'}} bg='#0a0a0a' h='90%' w='90%' >
+             <Paper className='gamescreen' radius='20px' style={{border:'1px solid #252525'}} bg='#0a0a0a' h='90%' w='90%' >
            
             <Flex   h='100%' w='100%' justify='center' align='center' >
                 <Center onClick={start} className='btn' onMouseOver={hover} onMouseOut={hovernt}  style={{borderRadius:'10px',cursor:'pointer'}} h='10%' bg='#ededed' w='20%'>
@@ -147,7 +146,7 @@ export default function Game(){
                     </Flex>
                 <Flex  h='80%' w='50%' justify='center' align='center' direction='column'  >
                     <Paper  className='mainimage' style={{position:'relative',bottom:'180vh'}} >
-                        <Mantineimg  alt='' radius='lg' src={city.image} ></Mantineimg>
+                        <Mantineimg  alt='' radius='lg' src={`/${city.image}`} ></Mantineimg>
                     </Paper>
                     <Title className='winnerline' style={{color:'#ededed',position:'relative',bottom:'190vh'}}   order={1}>{winner} Guessed it right! </Title>
                     <Title className='winnerline' style={{color:'#ededed',position:'relative',bottom:'190vh'}}order={2}>It is {name} </Title>
@@ -155,7 +154,7 @@ export default function Game(){
             
                 </Flex>}
                     
-            </Paper>}
+            </Paper>
         </Flex>}
         </>
     )

@@ -20,7 +20,7 @@ export default function MainPage(){
       <Flex  h='100vh' w='100vw' maw={'100vw'} bg='black' justify='center' align='center' >
 
           <Link  className={styles.test}   href={`/cities/${user.user.username}`} style={{height:'100%',backgroundImage:`url(pic1.jpg)`,backgroundSize:"cover", width:'24%',textDecoration:'none',transition:'0.2s'}}>
-            <Flex direction={'column'}   h='100%' w='100%' justify='center' align='center' style={{border:'1px solid #1b1b1b',borderRadius:'20px'}}>
+            <Flex direction={'column'}   h='100%' w='100%' justify='center' align='center' style={{borderRadius:'20px'}}>
               <Flex  h={'50%'} w={'90%'}  align={'flex-end'} gap={'5%'} justify={'center'}>
                 <Title style={{color:"white",display:"absolute"}}>Cities</Title>
               </Flex>
@@ -30,7 +30,7 @@ export default function MainPage(){
           </Link>
 
           <Link  className={styles.test}   href={`/Landmarks/${user.user.username}`} style={{backgroundImage:'url(pic2.jpg)',backgroundSize:"cover",backgroundPosition:"center",height:'100%', width:'24%',textDecoration:'none',transition:'0.2s'}}>
-            <Flex direction={'column'}   h='100%' w='100%' justify='center' align='center' style={{border:'1px solid #1b1b1b',borderRadius:'20px'}}>
+            <Flex direction={'column'}   h='100%' w='100%' justify='center' align='center' style={{borderRadius:'20px'}}>
               <Flex h={'50%'} w={'90%'}   align={'flex-end'} gap={'5%'} justify={'center'}>
                 
                 <Title style={{color:"white",fontSize:'40px'}}>Famous Landmarks</Title>
@@ -41,7 +41,7 @@ export default function MainPage(){
           </Link>
 
           <Link  className={styles.test}   href={`/People/${user.user.username}`} style={{backgroundImage:'url(https://i.pinimg.com/236x/39/9d/89/399d8983311443d06450bb12af692459.jpg)',backgroundSize:"cover",backgroundPosition:"center",height:'100%', width:'24%',textDecoration:'none',transition:'0.2s'}}>
-            <Flex direction={'column'}   h='100%' w='100%' justify='center' align='center' style={{border:'1px solid #1b1b1b',borderRadius:'20px'}}>
+            <Flex direction={'column'}   h='100%' w='100%' justify='center' align='center' style={{borderRadius:'20px'}}>
               <Flex h={'50%'} w={'90%'}   align={'flex-end'} gap={'5%'} justify={'center'}>
                 
                 <Title style={{color:"white"}}>Famous People</Title>
@@ -52,7 +52,7 @@ export default function MainPage(){
           </Link>
 
           <Link  className={styles.test}   href={`/Logos/${user.user.username}`} style={{backgroundImage:'url(pic4.jpg)',backgroundSize:"cover",backgroundPosition:"center",height:'100%', width:'24%',textDecoration:'none',transition:'0.2s'}}>
-            <Flex direction={'column'}   h='100%' w='100%' justify='center' align='center' style={{border:'1px solid #1b1b1b',borderRadius:'20px'}}>
+            <Flex direction={'column'}   h='100%' w='100%' justify='center' align='center' style={{borderRadius:'20px'}}>
               <Flex h={'50%'} w={'90%'}   align={'flex-end'} gap={'5%'} justify={'center'}>
                 
                 <Title style={{color:"white"}}>Logos</Title>
